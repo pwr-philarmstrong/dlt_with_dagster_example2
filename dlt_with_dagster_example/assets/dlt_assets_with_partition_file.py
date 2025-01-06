@@ -72,7 +72,7 @@ def rawdatapart2(table_name):
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="dlt_assets_with_partition_file_pipeline",
+        pipeline_name=f"dlt_assets_with_partition_file__{table_name}_pipeline",        
         destination=destination,
         dataset_name="dlt_assets_with_partition_file",
         progress="log",

@@ -134,7 +134,7 @@ def rawdatainc(table_name):
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="dlt_assets_mssql_incremental2_pipeline",
+        pipeline_name=f"dlt_assets_mssql_incremental2__{table}_pipeline",        
         destination=destination,
         dataset_name="dlt_assets_mssql_incremental2",
         progress="log",

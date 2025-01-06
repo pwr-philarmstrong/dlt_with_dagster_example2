@@ -76,7 +76,7 @@ def create_dlt_assets(tables):
                 table_name
             ),
             dlt_pipeline=pipeline(
-                pipeline_name="dlt_assets_dynamic_pipeline",
+                pipeline_name="dlt_assets_dynamic_{table_name}_pipeline",
                 destination=destination,
                 dataset_name="dlt_assets_dynamic",
                 progress="log",

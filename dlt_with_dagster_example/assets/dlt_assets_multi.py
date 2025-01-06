@@ -70,7 +70,7 @@ table_name='family'
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="rfam_database2_pipeline4",
+        pipeline_name=f"dlt_assets_multi__{table_name}_pipeline",
         destination=destination,
         dataset_name="dlt_assets_multi",
         progress="log",
@@ -92,7 +92,7 @@ table_name='clan'
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="rfam_database2",
+        pipeline_name=f"dlt_assets_multi__{table_name}_pipeline",
         destination='duckdb',
         dataset_name="dlt_assets_multi",
         progress="log",
@@ -112,7 +112,7 @@ table_name='clan_membership'
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="dlt_assets_multi_pipeline",
+        pipeline_name=f"dlt_assets_multi__{table_name}_pipeline",
         destination='duckdb',
         dataset_name="dlt_assets_multi",
         progress="log",
@@ -123,6 +123,6 @@ table_name='clan_membership'
 def dagster_sql_assets3(context: AssetExecutionContext, dlt: DagsterDltResource):
     yield from dlt.run(context=context, 
         write_disposition="append",       
-    )    
+    )  
 
 dagster_sql_assets = [dagster_sql_assets1, dagster_sql_assets2, dagster_sql_assets3]

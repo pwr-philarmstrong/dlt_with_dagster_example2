@@ -71,7 +71,7 @@ def rawdatainc(table_name):
         table_name
     ),
     dlt_pipeline=pipeline(
-        pipeline_name="dlt_assets_incremental_pipeline",
+        pipeline_name=f"dlt_assets_incremental__{table_name}_pipeline",        
         destination=destination,
         dataset_name="dlt_assets_incremental",
         progress="log",

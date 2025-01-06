@@ -42,11 +42,11 @@ assets = [
     *dlt_assets_with_partition,
     *dlt_assets_with_partition_file,
     *dlt_assets_incremental,
-    *dlt_assets_mssql_incremental2,
+    #*dlt_assets_mssql_incremental2,
     #*dlt_assets_dynamic,
     *dlt_assets_dynamic_file,
     *dlt_assets_dynamic_file2,
-    *dlt_assets_dynamic_mssql_file3,    
+    #*dlt_assets_dynamic_mssql_file3,    
     #*dlt_assets_dynamic,
 ]
 
