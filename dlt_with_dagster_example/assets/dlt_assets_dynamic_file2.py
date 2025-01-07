@@ -7,6 +7,7 @@ import pyarrow as pa
 import urllib.parse
 import os
 from datetime import datetime, timedelta
+import time
 
 from dagster import AssetExecutionContext, Definitions, AssetKey, ConfigurableResource, EnvVar
 from dagster_embedded_elt.dlt import DagsterDltResource, dlt_assets, DagsterDltTranslator
@@ -17,10 +18,11 @@ from dlt.sources.credentials import ConnectionStringCredentials
 from dlt.destinations import filesystem
 from dagster import AssetExecutionContext, StaticPartitionsDefinition
 from dlt import pipeline
+post_materialization_delay = 2 # seconds
 
 from ..utils import to_snake_case
 
-tables = ['dbo.clan_membership', 'dbo.clan', 'dbo.family']
+tables = ['dbo.clan', 'dbo.clan_membership',  'dbo.family']
 
 output_dir = 'c:/data/dlt_example/rfam/'
 destination = filesystem(bucket_url=f'file:///{output_dir}/')
@@ -132,6 +134,7 @@ def create_dlt_assets(tables):
                 yield from dlt.run(context=context, 
                     write_disposition="append",       
                 )
+                time.sleep(post_materialization_delay)
             
             return dagster_sql_assets
 

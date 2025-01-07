@@ -5,6 +5,7 @@ import sqlalchemy as sa
 import pyarrow as pa
 import urllib.parse
 import os
+import time
 
 from dagster import AssetExecutionContext, Definitions
 from dagster_embedded_elt.dlt import DagsterDltResource, dlt_assets
@@ -14,7 +15,8 @@ from dlt.common.pendulum import pendulum
 from dlt.sources.credentials import ConnectionStringCredentials
 from dlt.destinations import filesystem
 from dagster import AssetExecutionContext, StaticPartitionsDefinition
-from dlt import pipeline #, resource , sql_table, transform
+from dlt import pipeline
+post_materialization_delay = 2 # seconds #, resource , sql_table, transform
 
 output_dir = 'c:/data/dlt_example/rfam/'
 connection_string="mysql+pymysql://rfamro@mysql-rfam-public.ebi.ac.uk:4497/Rfam"
@@ -83,3 +85,5 @@ def dagster_sql_assets(context: AssetExecutionContext, dlt: DagsterDltResource):
     yield from dlt.run(context=context, 
         write_disposition="append",       
     )
+    time.sleep(post_materialization_delay)
+

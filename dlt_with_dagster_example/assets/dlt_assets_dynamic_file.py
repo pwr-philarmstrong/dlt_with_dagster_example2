@@ -7,6 +7,7 @@ import urllib.parse
 import os
 import pyarrow as pa
 from datetime import datetime, date
+import time
 
 from dagster import AssetExecutionContext, Definitions
 from dagster_embedded_elt.dlt import DagsterDltResource, dlt_assets
@@ -17,6 +18,7 @@ from dlt.sources.credentials import ConnectionStringCredentials
 from dlt.destinations import filesystem
 from dagster import StaticPartitionsDefinition
 from dlt import pipeline
+post_materialization_delay = 2 # seconds
 
 tables = ['clan_membership', 'clan', 'family']
 
@@ -112,6 +114,7 @@ def create_dlt_assets(tables):
                 yield from dlt.run(context=context, 
                     write_disposition="append",       
                 )
+                time.sleep(post_materialization_delay)
             
             return dagster_sql_assets
 
