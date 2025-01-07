@@ -16,7 +16,7 @@ from dlt.sources.credentials import ConnectionStringCredentials
 from dlt.destinations import filesystem
 from dagster import AssetExecutionContext, StaticPartitionsDefinition
 from dlt import pipeline
-post_materialization_delay = 2 # seconds #, resource , sql_table, transform
+post_materialization_delay = 0 # seconds
 
 from ..partitions import my_partitions
 
